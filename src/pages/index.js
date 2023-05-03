@@ -1,10 +1,11 @@
-import { Web3Button } from "@web3modal/react";
+import HomeCover from "@/components/home-cover";
+import HomeNFT from "@/components/home-nft";
 
 export default function Home() {
   return (
     <>
-      <h1>Ini Home Page</h1>
-      <Web3Button />
+      <HomeCover />
+      <HomeNFT />
     </>
   );
 }

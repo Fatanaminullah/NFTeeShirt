@@ -16,8 +16,13 @@ export const fetchMyNFTs = async (walletAddress) => {
         },
       }
     );
-    console.log("result:", data);
+    // console.log("result:", data);
+    return data.assets.filter((item) => item.metadata);
   } catch (error) {
-    console.log("error:", error);
+    // console.log("error:", error);
+    return error;
   }
 };
+
+export const replaceIpfsOrigin = (url) =>
+  url?.replace("ipfs://", "https://ipfs.io/ipfs/");
