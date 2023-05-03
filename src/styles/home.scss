@@ -1,7 +1,7 @@
 .sc-home-cover {
     height: 100vh;
     width: 100%;
-    background: #1a1a1a;
+    background: #111;
     display: flex;
     justify-content: center;
     .container {
@@ -24,6 +24,34 @@
         }
         .description {
             font-size: 1.75rem;
+        }
+    }
+}
+.sc-home-nft {
+    min-height: 100vh;
+    z-index: 1;
+    position: relative;
+    .row-nft {
+        .col-nft__item {
+            margin-bottom: 1rem;
+            .nft-item__card {
+                position: relative;
+                cursor: pointer;
+                .nft-item__card-image-wrapper {
+                    overflow: hidden;
+                    position: relative;
+                    @include aspect-ratio(1, 1);
+                    .nft-item__card-image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+                .nft-item__card-title {
+                    font-family: "Montserrat", sans-serif;
+                    margin-top: 0.5rem;
+                }
+            }
         }
     }
 }
