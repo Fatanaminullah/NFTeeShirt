@@ -129,8 +129,8 @@ export default function HomeNFT() {
                   </>
                 ) : (
                   <div className="nft-box__empty">
-                    You don't have any NFT's. You can buy it first on the
-                    marketplace!
+                    You don&apos;t have any NFT&apos;s. You can buy it first
+                    on the marketplace!
                   </div>
                 )}
               </div>
