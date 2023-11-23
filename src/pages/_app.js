@@ -20,10 +20,12 @@ const ethereumClient = new EthereumClient(wagmiClient, chains);
 
 import "@/styles/globals.css";
 import "@/styles/main.scss";
+import SEO from "@/components/seo";
 
 export default function App({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
+      <SEO />
       <Component {...pageProps} />
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </WagmiConfig>
