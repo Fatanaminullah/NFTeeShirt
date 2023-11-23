@@ -5,7 +5,7 @@ const state = proxy({
   color: "#1a1a1a",
   isLogoTexture: true,
   isFullTexture: false,
-  logoDecal: "./nft.jpg",
+  logoDecal: "./nft.jpeg",
   fullDecal: "./threejs.png",
 });
 
