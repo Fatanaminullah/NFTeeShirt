@@ -22,7 +22,6 @@ export const fetchMyNFTs = async (address) => {
       mediaItems: true,
       address,
     });
-    console.log(response.raw);
     return response?.raw?.result
       .filter((item) => item?.metadata)
       .map((item) => ({
@@ -31,7 +30,7 @@ export const fetchMyNFTs = async (address) => {
         image: item?.media?.media_collection?.high?.url,
       }));
   } catch (e) {
-    console.log("error moralis", e);
+    throw e;
   }
 };
 
