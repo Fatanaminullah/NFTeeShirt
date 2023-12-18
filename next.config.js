@@ -5,6 +5,7 @@ const nextConfig = {
     API_KEY: process.env.API_KEY,
     API_KEY_SECRET: process.env.API_KEY_SECRET,
     PROJECT_ID: process.env.PROJECT_ID,
+    API_SIGNATURE_URL: process.env.API_SIGNATURE_URL,
   },
   images: {
     remotePatterns: [
@@ -16,7 +17,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "sos-assets-bucket.s3.ap-southeast-1.amazonaws.com",
+        hostname: "nft-preview-media.s3.us-east-1.amazonaws.com",
         port: "",
         pathname: "/**",
       },

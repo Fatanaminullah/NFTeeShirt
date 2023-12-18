@@ -6,6 +6,7 @@ import {
 import { Web3Modal } from "@web3modal/react";
 import { WagmiConfig, configureChains, createClient } from "wagmi";
 import { mainnet } from "wagmi/chains";
+import "react-toastify/dist/ReactToastify.css";
 
 const chains = [mainnet];
 const projectId = process.env.PROJECT_ID;
@@ -21,10 +22,17 @@ const ethereumClient = new EthereumClient(wagmiClient, chains);
 import "@/styles/globals.css";
 import "@/styles/main.scss";
 import SEO from "@/components/seo";
+import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
+      <ToastContainer
+        position="top-right"
+        hideProgressBar
+        autoClose={5000}
+        pauseOnHover
+      />
       <SEO />
       <Component {...pageProps} />
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
