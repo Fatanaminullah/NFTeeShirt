@@ -1,7 +1,7 @@
 import CanvasModel from "@/components/canvas";
 import HomeIntro from "@/components/home-intro";
 import HomeNFT from "@/components/home-nft";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 
@@ -14,6 +14,7 @@ export default function Home() {
   const particlesLoaded = useCallback(async (container) => {
     await console.log(container);
   }, []);
+  const canvasRef = useRef();
   return (
     <div className="home">
       <Particles
@@ -23,9 +24,9 @@ export default function Home() {
         loaded={particlesLoaded}
         style={{ position: "absolute !important", zIndex: 0 }}
       />
-      <CanvasModel />
+      <CanvasModel ref={canvasRef} />
       <HomeIntro />
-      <HomeNFT />
+      <HomeNFT canvasRef={canvasRef} />
     </div>
   );
 }

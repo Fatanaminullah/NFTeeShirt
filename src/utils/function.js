@@ -8,21 +8,6 @@ const Auth = Buffer.from(
 const chainId = 1;
 
 export const fetchMyNFTs = async (address) => {
-  // try {
-  //   const { data } = await axios.get(
-  //     `https://nft.api.infura.io/networks/${chainId}/accounts/${walletAddress}/assets/nfts`,
-  //     {
-  //       headers: {
-  //         Authorization: `Basic ${Auth}`,
-  //       },
-  //     }
-  //   );
-  //   // console.log("result:", data);
-  //   return data.assets.filter((item) => item.metadata);
-  // } catch (error) {
-  //   // console.log("error:", error);
-  //   return error;
-  // }
   try {
     if (!Moralis.Core.isStarted) {
       await Moralis.start({
@@ -34,17 +19,56 @@ export const fetchMyNFTs = async (address) => {
     const response = await Moralis.EvmApi.nft.getWalletNFTs({
       chain: "0x1",
       format: "decimal",
-      mediaItems: false,
+      mediaItems: true,
       address,
     });
-    console.log(response.raw);
     return response?.raw?.result
       .filter((item) => item?.metadata)
-      .map((item) => ({ ...item, metadata: JSON.parse(item?.metadata) }));
+      .map((item) => ({
+        ...item,
+        metadata: JSON.parse(item?.metadata),
+        image: item?.media?.media_collection?.high?.url,
+      }));
   } catch (e) {
-    console.log("error moralis", e);
+    throw e;
   }
 };
 
+export const signUpSignature = async (wallet_address) => {
+  const result = await axios.post(`${process.env.API_SIGNATURE_URL}/v1/users`, {
+    wallet_address,
+  });
+  const user = result.data?.values;
+  return user;
+};
+export const verifySignature = async ({ wallet_address, signature }) => {
+  try {
+    const result = await axios.post(
+      `${process.env.API_SIGNATURE_URL}/v1/users/verify`,
+      {
+        wallet_address,
+        signature,
+      }
+    );
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+export const verifyOwner = async ({
+  wallet_address,
+  token_id,
+  contract_address,
+}) => {
+  try {
+    const result = await axios.post(
+      `${process.env.API_SIGNATURE_URL}/v1/users/owner`,
+      { wallet_address, token_id, contract_address }
+    );
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
 export const replaceIpfsOrigin = (url) =>
   url?.replace("ipfs://", "https://ipfs.io/ipfs/");
